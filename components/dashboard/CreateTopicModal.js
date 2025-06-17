@@ -336,7 +336,7 @@ export default function CreateTopicModal({ open, onClose, onCreate }) {
                                             Supported: PDF, PowerPoint, Word,
                                             Text, Images. Files will be
                                             processed with AI when you click
-                                            "Create".
+                                            &quot;Create&quot;.
                                         </p>
                                     </div>
                                 ) : (
