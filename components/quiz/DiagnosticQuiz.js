@@ -12,10 +12,10 @@ export default function DiagnosticQuiz({ topic, onComplete, onSkip, isOpen }) {
 
     // Generate quiz when component opens
     useEffect(() => {
-        if (isOpen && topic && !quiz) {
+        if (isOpen && !quiz) {
             generateQuiz();
         }
-    }, [isOpen, topic]);
+    }, [isOpen, generateQuiz, quiz]);
 
     const generateQuiz = async () => {
         setLoading(true);
@@ -355,9 +355,7 @@ export default function DiagnosticQuiz({ topic, onComplete, onSkip, isOpen }) {
                             Diagnostic Quiz for {topic?.title}
                         </h2>
                         <p className="text-gray-600 dark:text-gray-400 mb-6">
-                            We'll create a personalized quiz to assess your
-                            current knowledge and identify areas for focused
-                            study.
+                            Let&apos;s assess your knowledge
                         </p>
                         <div className="flex gap-4 justify-center">
                             <button

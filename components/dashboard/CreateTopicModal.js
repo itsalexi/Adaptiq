@@ -202,7 +202,7 @@ export default function CreateTopicModal({ open, onClose, onCreate }) {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
-                            placeholder="e.g. Algebra, Biology 10"
+                            placeholder='e.g. "Calculus 101", Biology 10'
                         />
                     </div>
                     <div>

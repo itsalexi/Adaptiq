@@ -192,14 +192,16 @@ export default function Home() {
     }
 
     return (
-        <div className="min-h-screen flex bg-gray-100 dark:bg-gray-900">
+        <div className="min-h-screen flex flex-col md:flex-row bg-gray-100 dark:bg-gray-900">
             <Sidebar onCreateTopic={() => setCreateModalOpen(true)} />
-            <DashboardMain
-                user={user}
-                topics={topics}
-                onCreateTopic={() => setCreateModalOpen(true)}
-                onStartDiagnostic={startDiagnosticForTopic}
-            />
+            <main className="flex-1 w-full">
+                <DashboardMain
+                    user={user}
+                    topics={topics}
+                    onCreateTopic={() => setCreateModalOpen(true)}
+                    onStartDiagnostic={startDiagnosticForTopic}
+                />
+            </main>
             <CreateTopicModal
                 open={createModalOpen}
                 onClose={() => setCreateModalOpen(false)}

@@ -79,7 +79,7 @@ export default function OnboardingFlow({ onComplete }) {
                             Welcome to Adaptiq! 🎓
                         </h1>
                         <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">
-                            Let's personalize your learning experience by
+                            Let&apos;s personalize your learning experience by
                             understanding how you learn best.
                         </p>
                     </div>
@@ -112,7 +112,7 @@ export default function OnboardingFlow({ onComplete }) {
                                 onClick={handleSkip}
                                 className="w-full py-3 px-6 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 font-semibold rounded-lg transition-colors"
                             >
-                                Skip for now (I'll set it up later)
+                                Skip for now (I&apos;ll set it up later)
                             </button>
                         </div>
                     </div>
