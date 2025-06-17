@@ -1,0 +1,102 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
+}
+
+body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom range slider styles */
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 100%;
+    height: 2.5rem;
+}
+
+.slider::-webkit-slider-runnable-track {
+    height: 8px;
+    background: #2563eb;
+    border-radius: 4px;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #2563eb;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+    border: 3px solid #fff;
+    margin-top: -10px;
+    transition: background 0.2s;
+}
+
+.slider:focus::-webkit-slider-thumb {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+.slider::-moz-range-thumb {
+    background: #2563eb;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+    border: 3px solid #fff;
+    transition: background 0.2s;
+}
+
+.slider::-moz-range-track {
+    height: 8px;
+    background: #2563eb;
+    border-radius: 4px;
+}
+
+.slider::-ms-fill-lower,
+.slider::-ms-fill-upper {
+    background: #2563eb;
+    border-radius: 4px;
+}
+
+.slider:focus {
+    outline: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .slider::-webkit-slider-runnable-track,
+    .slider::-moz-range-track,
+    .slider::-ms-fill-lower,
+    .slider::-ms-fill-upper {
+        background: #3b82f6;
+    }
+    .slider::-webkit-slider-thumb,
+    .slider::-moz-range-thumb {
+        background: #3b82f6;
+        border: 3px solid #1e293b;
+    }
+}
