@@ -26,8 +26,8 @@ export default function TeacherDashboard({
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {topics.length === 0 ? (
                         <div className="col-span-full text-center text-gray-500 dark:text-gray-400">
-                            No study materials yet. Click "Create Study
-                            Material" to add your first topic.
+                            No study materials yet. Click &quot;Create Study
+                            Material&quot; to add your first topic.
                         </div>
                     ) : (
                         topics.map((topic) => (
