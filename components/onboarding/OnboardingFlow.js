@@ -97,17 +97,15 @@ export default function OnboardingFlow({ onComplete }) {
                             I am a Student
                         </button>
 
-                        <div className="relative">
-                            <button
-                                disabled
-                                className="w-full py-4 px-6 bg-gray-300 text-gray-600 font-semibold rounded-lg cursor-not-allowed text-lg"
-                            >
-                                I am a Teacher
-                            </button>
-                            <span className="absolute -top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded-full">
-                                Coming Soon
-                            </span>
-                        </div>
+                        <button
+                            onClick={() => {
+                                setRole('teacher');
+                                setStep('intro');
+                            }}
+                            className="w-full py-4 px-6 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors text-lg"
+                        >
+                            I am a Teacher
+                        </button>
                     </div>
                 </div>
             </div>

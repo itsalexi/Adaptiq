@@ -21,6 +21,7 @@ import DashboardMain from '../components/dashboard/DashboardMain';
 import CreateTopicModal from '../components/dashboard/CreateTopicModal';
 import DiagnosticQuiz from '../components/quiz/DiagnosticQuiz';
 import { toast } from 'react-hot-toast';
+import TeacherDashboard from '../components/dashboard/TeacherDashboard';
 
 export default function Home() {
     const { user, loading, logout } = useAuth();
@@ -70,10 +71,14 @@ export default function Home() {
                 diagnosticResults: null,
             };
 
-            // Automatically start diagnostic quiz for new topic
-            setCurrentTopicForQuiz(newTopic);
-            setDiagnosticQuizOpen(true);
             setCreateModalOpen(false);
+            if (user.profile?.role === 'teacher') {
+                router.push(`/topics/${newTopic.id}`);
+            } else {
+                // Automatically start diagnostic quiz for new topic (students only)
+                setCurrentTopicForQuiz(newTopic);
+                setDiagnosticQuizOpen(true);
+            }
         } catch (error) {
             console.error('Error creating topic:', error);
         }
@@ -191,6 +196,28 @@ export default function Home() {
         return null; // Will redirect to auth page
     }
 
+    // Render teacher dashboard if user is a teacher
+    if (user.profile?.role === 'teacher') {
+        return (
+            <div className="min-h-screen flex flex-col md:flex-row bg-gray-100 dark:bg-gray-900">
+                <Sidebar onCreateTopic={() => setCreateModalOpen(true)} />
+                <main className="flex-1 w-full">
+                    <TeacherDashboard
+                        user={user}
+                        topics={topics}
+                        onCreateTopic={handleCreateTopic}
+                    />
+                </main>
+                <CreateTopicModal
+                    open={createModalOpen}
+                    onClose={() => setCreateModalOpen(false)}
+                    onCreate={handleCreateTopic}
+                />
+            </div>
+        );
+    }
+
+    // Student dashboard (default)
     return (
         <div className="min-h-screen flex flex-col md:flex-row bg-gray-100 dark:bg-gray-900">
             <Sidebar onCreateTopic={() => setCreateModalOpen(true)} />
