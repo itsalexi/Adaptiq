@@ -7,10 +7,11 @@ import LearningStyleQuiz from './LearningStyleQuiz';
 import OnboardingResult from './OnboardingResult';
 
 export default function OnboardingFlow({ onComplete }) {
-    const [step, setStep] = useState('intro');
+    const [step, setStep] = useState('role');
     const [learningStyle, setLearningStyle] = useState(null);
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState(null);
+    const [role, setRole] = useState(null);
 
     const { updateUserProfile } = useAuth();
 
@@ -25,6 +26,7 @@ export default function OnboardingFlow({ onComplete }) {
         try {
             await updateUserProfile({
                 learningStyle: result,
+                role: role,
                 onboardingCompleted: true,
             });
             setTimeout(() => {
@@ -43,6 +45,7 @@ export default function OnboardingFlow({ onComplete }) {
         try {
             await updateUserProfile({
                 learningStyle: 'Mixed',
+                role: role,
                 onboardingCompleted: true,
             });
 
@@ -70,17 +73,58 @@ export default function OnboardingFlow({ onComplete }) {
         );
     }
 
-    if (step === 'intro') {
+    if (step === 'role') {
         return (
             <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-                <div className="max-w-2xl mx-auto p-6 text-center">
+                <div className="w-full max-w-lg mx-auto p-8">
                     <div className="mb-8">
                         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
                             Welcome to Adaptiq! 🎓
                         </h1>
                         <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">
-                            Let&apos;s personalize your learning experience by
-                            understanding how you learn best.
+                            Let's start by understanding your role.
+                        </p>
+                    </div>
+
+                    <div className="space-y-4">
+                        <button
+                            onClick={() => {
+                                setRole('student');
+                                setStep('intro');
+                            }}
+                            className="w-full py-4 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors text-lg"
+                        >
+                            I am a Student
+                        </button>
+
+                        <div className="relative">
+                            <button
+                                disabled
+                                className="w-full py-4 px-6 bg-gray-300 text-gray-600 font-semibold rounded-lg cursor-not-allowed text-lg"
+                            >
+                                I am a Teacher
+                            </button>
+                            <span className="absolute -top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded-full">
+                                Coming Soon
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (step === 'intro') {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+                <div className="w-full max-w-lg mx-auto p-8">
+                    <div className="mb-8">
+                        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                            Let's Personalize Your Experience
+                        </h1>
+                        <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">
+                            Let's understand how you learn best to create the
+                            most effective study materials for you.
                         </p>
                     </div>
 
@@ -112,7 +156,7 @@ export default function OnboardingFlow({ onComplete }) {
                                 onClick={handleSkip}
                                 className="w-full py-3 px-6 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 font-semibold rounded-lg transition-colors"
                             >
-                                Skip for now (I&apos;ll set it up later)
+                                Skip for now (I'll set it up later)
                             </button>
                         </div>
                     </div>
