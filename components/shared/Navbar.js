@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 import ProfileSettingsModal from './ProfileSettingsModal';
+import Image from 'next/image';
 
 export default function Navbar() {
     const { user, logout, updateUserProfile } = useAuth();
@@ -41,29 +42,14 @@ export default function Navbar() {
     return (
         <>
             <nav className="w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-6 h-16">
-                <div className="flex items-center gap-2">
-                    <span className="text-2xl">
-                        <svg
-                            width="28"
-                            height="28"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                        >
-                            <circle
-                                cx="12"
-                                cy="12"
-                                r="10"
-                                stroke="#222"
-                                strokeWidth="2"
-                            />
-                            <path
-                                d="M8 12c0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4-4-1.79-4-4Z"
-                                stroke="#222"
-                                strokeWidth="2"
-                            />
-                            <circle cx="12" cy="12" r="2" fill="#222" />
-                        </svg>
-                    </span>
+                <div className="flex items-center gap-3">
+                    <Image
+                        src="/logo.png"
+                        alt="Adaptiq Logo"
+                        width={36}
+                        height={36}
+                        priority
+                    />
                     <span className="text-xl font-bold text-gray-900 dark:text-white">
                         Adaptiq
                     </span>
